@@ -21,7 +21,7 @@ const geocode = (params) => {
   let wa1 = `1B${rightpad(houseNumber, 16)}${rightpad('', 38)}${boroCode}${rightpad('', 10)}${rightpad(streetName, 32)}C${rightpad(zipCode, 5)}`;
   wa1 = wa1.toUpperCase();
   const wa1Buffer = new Buffer(1200);
-  const wa2Buffer = new Buffer(1200);
+  const wa2Buffer = new Buffer(4300);
 
   wa1Buffer.write(wa1, 'utf8');
 
@@ -29,7 +29,6 @@ const geocode = (params) => {
 
   const wa1Response = wa1Buffer.toString();
   const wa2Response = wa2Buffer.toString();
-  console.log(wa1Response, wa2Response)
 
   return parseBuffer(wa1Response, wa2Response);
 };

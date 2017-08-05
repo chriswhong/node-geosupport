@@ -9,4 +9,4 @@ ENV GEOFILES="/src/geosupport/fls/"
 
 WORKDIR /src
 
-CMD ["node","script.js"]
+CMD ["node","sample.js"]
