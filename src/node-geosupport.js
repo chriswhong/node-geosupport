@@ -1,7 +1,7 @@
 const ffi = require('ffi');
 const parseBuffer = require('./parseBuffer');
 
-const lib = ffi.Library('geosupport/lib/libgeo.so', {
+const lib = ffi.Library('../geosupport/lib/libgeo.so', {
   geo: ['void', ['char *', 'char *']],
 });
 
