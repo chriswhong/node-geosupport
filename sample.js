@@ -2,10 +2,10 @@ const geocode = require('./src/node-geosupport');
 
 const addresses = [
   {
-    houseNumber: '86-54',
-    streetName: 'WINCHESTER BOULEVARD',
-    zipCode: '11427',
-    boroCode: 4,
+    houseNumber: '',
+    streetName: '120 broadway',
+    zipCode: '',
+    boroCode: 1,
   },
 ];
 

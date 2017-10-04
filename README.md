@@ -52,6 +52,11 @@ This runs the container and executes `sample.js`
 
 `docker run -it -v $PWD:/src node_geosupport`
 
+Or, run ephemerally:
+```
+docker run -e LD_LIBRARY_PATH="./geosupport/lib/" -e GEOFILES="./geosupport/fls/" --rm -v "$PWD":/app -w /app node sh -c 'node sample.js' 
+```
+
 ## TODO
 
 - Figure out what it would take to make this a real npm module.  (The geosupport files are large, and are updated a few times a year.  It may be possible to have the package download them from DCP as a postinstall npm command)

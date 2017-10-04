@@ -1,7 +1,7 @@
 const ffi = require('ffi');
 const parseBuffer = require('./parseBuffer');
 
-const lib = ffi.Library('../geosupport/lib/libgeo.so', {
+const lib = ffi.Library('./geosupport/lib/libgeo', {
   geo: ['void', ['char *', 'char *']],
 });
 
@@ -29,7 +29,7 @@ const geocode = (params) => {
 
   const wa1Response = wa1Buffer.toString();
   const wa2Response = wa2Buffer.toString();
-
+  console.log(wa1Response, wa2Response)
   return parseBuffer(wa1Response, wa2Response);
 };
 
