@@ -1,4 +1,4 @@
-const geocode = require('./src/node-geosupport');
+const geosupport = require('./src/node-geosupport');
 
 const addresses = [
   {
@@ -9,5 +9,8 @@ const addresses = [
   },
 ];
 
-const results = addresses.map(address => geocode(address));
-console.log(results);
+// const results = addresses.map(address => geosupport.geocode(address));
+// console.log(results);
+
+const functionBLookup = geosupport.functionB(1, 'bro');
+console.log(functionBLookup);
