@@ -11,10 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^4.0.0",
-    "ffi": "^2.2.0",
-    "proj4": "^2.4.3",
-    "request": "^2.81.0"
+    "ffi": "^2.2.0s"
   },
   "devDependencies": {
     "eslint": "^4.3.0",

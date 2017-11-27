@@ -1,4 +1,4 @@
-FROM node
+FROM node:9
 
 RUN mkdir /install
 ADD package.json /install/package.json

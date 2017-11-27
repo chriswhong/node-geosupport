@@ -1,9 +1,7 @@
-String.prototype.getSubString = function (location, length) { // eslint-disable-line
-  return this.toString().substring(location - 1, (location - 1) + length);
-};
+const parseWorkArea = require('../../helpers/parse-work-area');
 
-const workArea2Function1 = (workArea2) => {
-  const parsed = { // refer to user guide, p582, p597
+const workArea2Function1 = (buffer) => {
+  const config = {
     continuousParityIndicator: [150, 3],
     lowHouseNumberSort: [23, 11],
     highHouseNumberSort: [34, 11],
@@ -68,15 +66,7 @@ const workArea2Function1 = (workArea2) => {
     curveFlag: [300, 1],
   };
 
-  const output = Object.keys(parsed)
-    .filter(key => parsed[key].length > 0)
-    .reduce((obj, key) => {
-      const newObj = obj;
-      newObj[key] = parsed[key];
-      return newObj;
-    }, {});
-
-  return output;
+  return parseWorkArea(buffer, config);
 };
 
 module.exports = workArea2Function1;

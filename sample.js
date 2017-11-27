@@ -1,16 +1,24 @@
+console.log('hello')
 const geosupport = require('./src/node-geosupport');
+
 
 const addresses = [
   {
-    houseNumber: '',
-    streetName: '120 broadway',
+    houseNumber: '120',
+    streetName: 'broadway',
     zipCode: '',
     boroCode: 1,
   },
+  {
+    houseNumber: '388',
+    streetName: 'bridge street',
+    zipCode: '',
+    boroCode: 3,
+  },
 ];
 
-// const results = addresses.map(address => geosupport.geocode(address));
-// console.log(results);
+const results = addresses.map(address => geosupport.function1(address));
+console.log(results)
 
 const functionBLookup = geosupport.functionB(1, 'bro');
-console.log(functionBLookup);
+console.log(functionBLookup)

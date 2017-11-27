@@ -8,10 +8,9 @@ const parseWorkArea = (workArea, config) => {
       const newObj = obj;
       const [startPosition, length, transform] = config[key];
       newObj[key] = workArea.getSubString(startPosition, length);
-      if (transform) newObj[key] = transform(newObj[key]);
+      if (transform && (newObj[key].length > 0)) newObj[key] = transform(newObj[key]);
       return newObj;
     }, {});
-
 
   const output = Object.keys(parsed)
     .filter(key => parsed[key].length > 0)
@@ -22,8 +21,6 @@ const parseWorkArea = (workArea, config) => {
     }, {});
 
   return output;
-}
-
-
+};
 
 module.exports = parseWorkArea;
