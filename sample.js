@@ -1,4 +1,3 @@
-console.log('hello')
 const geosupport = require('./src/node-geosupport');
 
 

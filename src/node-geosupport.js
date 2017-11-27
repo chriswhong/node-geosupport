@@ -22,10 +22,10 @@ const function1 = (params) => {
   let workArea1 = `1B${rightpad(houseNumber, 16)}${rightpad('', 38)}${boroCode}${rightpad('', 10)}${rightpad(streetName, 32)}C${rightpad(zipCode, 5)}`;
   workArea1 = workArea1.toUpperCase();
   const workArea1Buffer = new Buffer(1200);
-  const workArea2Buffer = new Buffer(300);
+  const workArea2Buffer = new Buffer(4300);
 
   workArea1Buffer.write(workArea1, 'utf8');
-
+  console.log('here');
   lib.geo(workArea1Buffer, workArea2Buffer);
 
   const workArea1Response = workArea1Buffer.toString();

@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ffi": "^2.2.0s"
+    "ffi": "^2.2.0"
   },
   "devDependencies": {
     "eslint": "^4.3.0",
