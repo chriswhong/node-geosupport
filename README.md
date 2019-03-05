@@ -40,9 +40,15 @@ It outputs an array of results:
 ## Prerequisites  
 
 You will need to download geosupport for linux and add its contents to `/geosupport` in the root of this repo.  
+## Dockerfile
 
-## To Build
-This builds the docker container based on `Dockerfile`
+Geosupport binaries are only available for Windows and Linux, so Docker is necessary to use geosupport with node.js on a Mac.
+
+The `Dockerfile` in the root of this repo can be used to build a linux environment from the `node` base image, which also has geosupport binaries in a known location and the appropriate environment variables.
+
+Once built, you can use this image to run a Mac-friendly development container.
+
+### To Build
 
 `docker build -t "node_geosupport" .`
 
@@ -51,6 +57,16 @@ This builds the docker container based on `Dockerfile`
 This runs the container and executes `sample.js`
 
 `docker run -it -v $PWD:/src node_geosupport`
+
+## Development
+
+Start an ephemeral linux container with this repo mapped as a volume that can run node commands:
+
+`docker run -it -v $PWD:/node-geosupport -w /node-geosupport node_geosupport /bin/bash`
+
+`npm install`
+
+`node sample.js`
 
 ## TODO
 

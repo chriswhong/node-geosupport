@@ -1,12 +1,24 @@
+# sets up a container with the geosupport v19A linux binary in a known location and
+# and the appropriate environment variables set
 FROM node
 
-RUN mkdir /install
-ADD package.json /install/package.json
-RUN cd /install && npm install
-ENV NODE_PATH=/install/node_modules
-ENV LD_LIBRARY_PATH="/src/geosupport/lib/"
-ENV GEOFILES="/src/geosupport/fls/"
+# update and install
+RUN apt-get update -y -q && \
+  apt-get install curl -y -q && \
+  apt-get install unzip -y -q
 
-WORKDIR /src
+# make and use geosupport directory
+RUN mkdir /geosupport
+WORKDIR /geosupport
+RUN mkdir tmp
 
-CMD ["node","sample.js"]
+# get geosupport
+RUN curl https://www1.nyc.gov/assets/planning/download/zip/data-maps/open-data/linux_geo19a_191.zip -o tmp/linux_geo19a_191.zip
+
+# unzip files and move everything up one level
+RUN unzip tmp/linux_geo19a_191.zip -d .
+RUN mv version-19a_19.1/* .
+
+# set required geosupport environment variables
+ENV LD_LIBRARY_PATH="/geosupport/lib/"
+ENV GEOFILES="/geosupport/fls/"
