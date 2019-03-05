@@ -28,8 +28,6 @@ geosupport/
 
 Set up environment variables:
 
-`GEOSUPPORT_PATH` - the path to the geosupport `lib/` directory (used by node-geosupport)
-
 `LD_LIBRARY_PATH` - the path to the geosupport `lib/` directory (used by geosupport)
 
 `GEOFILES` - the path to the geosupport `fls/` directory (used by geosupport)
@@ -229,6 +227,6 @@ Use `ctrl-c` to exit the container.
 
 ## About geosupport
 
-[Read the ]Geosupport User Programming Guide](https://nycplanning.github.io/Geosupport-UPG/)
+Read the [Geosupport User Programming Guide](https://nycplanning.github.io/Geosupport-UPG/)
 
 Geosupport is the city's official geocoder, maintained by the Department of City Planning.  It works by passing in two buffers into `libgeo.so`, known as "work area 1" and "work area 2".  Input variables must be added at specific location in each buffer to be parsed correctly.  `libgeo.so` outputs the same buffers, but adds the output data into specific areas.  Each work area must be assembled and parsed differently depending on which geosupport function is being called.  Refer to the user guide for details.
