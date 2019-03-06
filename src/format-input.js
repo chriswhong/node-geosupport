@@ -1,5 +1,5 @@
-const csv = require('csvtojson');
-const parseCSV = require('./parse-CSV');
+const parseCSV = require('./utils/parse-CSV');
+const parseField = require('./utils/parse-field');
 
 const workArea1Layouts = parseCSV('../function_info/work_area_layouts/input/WA1.csv');
 
@@ -34,12 +34,6 @@ const createWa2 = (flags) => {
   return buffer.toString();
 };
 
-const parseField = (layouts, name, wa) => {
-  const layout = layouts.find(d => d.name === name);
-
-  return wa.substring(parseInt(layout.from, 10) - 1, parseInt(layout.to, 10));
-};
-
 const getMode = (flags) => {
   if (flags.mode_switch) {
     return 'extended';
@@ -66,23 +60,6 @@ const getFlags = (wa1, layouts) => {
   return flags;
 };
 
-const parseWorkArea = (output, layouts, wa) => {
-  layouts.forEach((layout) => {
-    output[layout.name] = parseField(layouts, layout.name, wa);
-  });
-
-  return output;
-};
-
-const cleanOutput = (output) => {
-  Object.keys(output).forEach((key) => {
-    output[key] = output[key].trim();
-    if (output[key].length === 0) delete output[key];
-  });
-
-  return output;
-};
-
 const formatInput = (params) => {
   const wa1 = createWa1(params);
 
@@ -93,19 +70,4 @@ const formatInput = (params) => {
   return { flags, wa1, wa2 };
 };
 
-const parseOutput = (flags, wa1, wa2) => {
-  let output = {};
-
-  output = parseWorkArea(output, workArea1Layouts, wa1);
-
-  const outputLayouts = parseCSV('../function_info/work_area_layouts/output/1B.csv');
-
-  output = parseWorkArea(output, outputLayouts, wa2);
-
-  return cleanOutput(output);
-};
-
-module.exports = {
-  formatInput,
-  parseOutput,
-};
+module.exports = formatInput;

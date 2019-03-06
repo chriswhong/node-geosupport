@@ -1,5 +1,6 @@
 const ffi = require('ffi');
-const { formatInput, parseOutput } = require('./utils/io');
+const formatInput = require('./format-input');
+const parseOutput = require('./parse-output');
 
 const lib = ffi.Library(`${process.env.LD_LIBRARY_PATH}/libgeo.so`, {
   geo: ['void', ['char *', 'char *']],
