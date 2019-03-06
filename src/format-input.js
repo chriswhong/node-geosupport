@@ -1,7 +1,7 @@
 const parseCSV = require('./utils/parse-CSV');
 const parseField = require('./utils/parse-field');
 
-const workArea1Layouts = parseCSV('../function_info/work_area_layouts/input/WA1.csv');
+const workArea1Layouts = parseCSV('work_area_layouts/input/WA1.csv');
 
 const createWa1 = (params) => {
   params['Work Area Format Indicator'] = 'C';
@@ -18,11 +18,13 @@ const createWa1 = (params) => {
 };
 
 const createWa2 = (flags) => {
-  const functions = parseCSV('../function_info/function_info.csv');
+  const functions = parseCSV('function_info.csv');
 
   // get length
   const functionConfig = functions.find(d => d.function === flags.function);
+  console.log('functionConfig', functionConfig)
   const length = parseInt(functionConfig[flags.mode], 10);
+  console.log('length', length)
 
   if (length == null) return null;
 
@@ -62,9 +64,7 @@ const getFlags = (wa1, layouts) => {
 
 const formatInput = (params) => {
   const wa1 = createWa1(params);
-
   const flags = getFlags(wa1, workArea1Layouts);
-
   const wa2 = createWa2(flags);
 
   return { flags, wa1, wa2 };

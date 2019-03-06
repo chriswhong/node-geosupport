@@ -1,7 +1,7 @@
 const parseCSV = require('./utils/parse-CSV');
 const parseField = require('./utils/parse-field');
 
-const workArea1Layouts = parseCSV('../function_info/work_area_layouts/input/WA1.csv');
+const workArea1Layouts = parseCSV('work_area_layouts/input/WA1.csv');
 
 const parseWorkArea = (output, layouts, wa) => {
   layouts.forEach((layout) => {
@@ -11,6 +11,7 @@ const parseWorkArea = (output, layouts, wa) => {
   return output;
 };
 
+// trim whitespace, only return keys that contain data
 const cleanOutput = (output) => {
   Object.keys(output).forEach((key) => {
     output[key] = output[key].trim();
@@ -25,7 +26,7 @@ const parseOutput = (flags, wa1, wa2) => {
 
   output = parseWorkArea(output, workArea1Layouts, wa1);
 
-  const outputLayouts = parseCSV('../function_info/work_area_layouts/output/1B.csv');
+  const outputLayouts = parseCSV('work_area_layouts/output/1B.csv');
 
   output = parseWorkArea(output, outputLayouts, wa2);
 
