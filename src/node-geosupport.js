@@ -24,11 +24,11 @@ const callGeolib = (wa1, wa2) => {
 const call = async (params) => {
   params['Geosupport Function Code'] = '1B';
 
-  const { flags, wa1, wa2 } = await formatInput(params);
+  const { flags, wa1, wa2 } = formatInput(params);
 
   const { wa1Response, wa2Response } = callGeolib(wa1, wa2);
 
-  const output = await parseOutput(flags, wa1Response, wa2Response);
+  const output = parseOutput(flags, wa1Response, wa2Response);
   return output;
 };
 

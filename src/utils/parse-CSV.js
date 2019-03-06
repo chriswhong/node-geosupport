@@ -1,7 +1,8 @@
 const fs = require('fs');
+const path = require('path');
 const csvjson = require('csvjson');
 
-module.exports = (path) => {
-  const data = fs.readFileSync(path.join(__dirname, 'path'), { encoding: 'utf8' });
+module.exports = (pathToFile) => {
+  const data = fs.readFileSync(path.join(__dirname, pathToFile), { encoding: 'utf8' });
   return csvjson.toObject(data);
 };
