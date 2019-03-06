@@ -21,12 +21,22 @@ const cleanOutput = (output) => {
   return output;
 };
 
-const parseOutput = (flags, wa1, wa2) => {
+const parseOutput = (flags, wa1, wa2, functionCode) => {
   let output = {};
 
   output = parseWorkArea(output, workArea1Layouts, wa1);
 
-  const outputLayouts = parseCSV('work_area_layouts/output/1B.csv');
+  let outpuLayoutFilename = '';
+  switch (functionCode) {
+    case '1':
+      outpuLayoutFilename = '1_1E';
+      break;
+    default:
+      outpuLayoutFilename = functionCode;
+  }
+
+
+  const outputLayouts = parseCSV(`work_area_layouts/output/${outpuLayoutFilename}.csv`);
 
   output = parseWorkArea(output, outputLayouts, wa2);
 

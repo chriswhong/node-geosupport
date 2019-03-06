@@ -22,7 +22,7 @@ const createWa2 = (flags) => {
 
   // get length
   const functionConfig = functions.find(d => d.function === flags.function);
-  console.log('functionConfig', functionConfig)
+  console.log('functionConfig', functionConfig, flags)
   const length = parseInt(functionConfig[flags.mode], 10);
   console.log('length', length)
 
@@ -50,7 +50,7 @@ const getMode = (flags) => {
 
 const getFlags = (wa1, layouts) => {
   const flags = {
-    function: parseField(layouts, 'Geosupport Function Code', wa1),
+    function: parseField(layouts, 'Geosupport Function Code', wa1).trim(),
     mode_switch: parseField(layouts, 'Mode Switch', wa1) === 'X',
     long_work_area_2: parseField(layouts, 'Long Work Area 2 Flag', wa1) === 'L',
     tpad: parseField(layouts, 'TPAD Switch', wa1) === 'Y',

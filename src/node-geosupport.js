@@ -33,7 +33,7 @@ const buildCallForFunctionCode = functionCode => (
 
     const { wa1Response, wa2Response } = callGeolib(wa1, wa2);
 
-    const output = parseOutput(flags, wa1Response, wa2Response);
+    const output = parseOutput(flags, wa1Response, wa2Response, functionCode);
     return output;
   });
 
