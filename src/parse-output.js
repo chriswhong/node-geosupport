@@ -1,7 +1,7 @@
 const parseCSV = require('./utils/parse-CSV');
 const parseField = require('./utils/parse-field');
 
-const workArea1Layouts = parseCSV('work_area_layouts/input/WA1.csv');
+const workArea1Layouts = parseCSV('work_area_layouts/output/WA1.csv');
 
 const parseWorkArea = (output, layouts, wa) => {
   layouts.forEach((layout) => {
@@ -26,19 +26,26 @@ const parseOutput = (flags, wa1, wa2, functionCode) => {
 
   output = parseWorkArea(output, workArea1Layouts, wa1);
 
-  let outpuLayoutFilename = '';
-  switch (functionCode) {
-    case '1':
-      outpuLayoutFilename = '1_1E';
-      break;
-    default:
-      outpuLayoutFilename = functionCode;
+  if (wa2.length > 0) {
+    let outputLayoutFilename = '';
+    switch (functionCode) {
+      case '1':
+      case '1E':
+        outputLayoutFilename = '1_1E';
+        break;
+      case '1A':
+      case 'BL':
+      case 'BN':
+        outputLayoutFilename = '1A_BL_BN';
+        break;
+      default:
+        outputLayoutFilename = functionCode;
+    }
+
+    const outputLayouts = parseCSV(`work_area_layouts/output/${outputLayoutFilename}.csv`);
+
+    output = parseWorkArea(output, outputLayouts, wa2);
   }
-
-
-  const outputLayouts = parseCSV(`work_area_layouts/output/${outpuLayoutFilename}.csv`);
-
-  output = parseWorkArea(output, outputLayouts, wa2);
 
   return cleanOutput(output);
 };

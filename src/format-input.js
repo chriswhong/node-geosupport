@@ -22,9 +22,7 @@ const createWa2 = (flags) => {
 
   // get length
   const functionConfig = functions.find(d => d.function === flags.function);
-  console.log('functionConfig', functionConfig, flags)
   const length = parseInt(functionConfig[flags.mode], 10);
-  console.log('length', length)
 
   if (length == null) return null;
 
