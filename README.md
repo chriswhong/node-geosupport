@@ -8,9 +8,9 @@ If new fields are added to geosupport in the future, both packages can be update
 
 ## How to Use
 
-This package is still in its early stages and is not yet published.  You can install it from github:
+Install:
 
-`npm install chriswhong/node-geosupport`
+`npm install node-geosupport`
 
 You must also have geosupport desktop edition installed in your environment.  This code was designed around the [Linux Version of Geosupport Desktop](https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-gde-home.page).  (It won't work on a Mac unless you use Docker, see below.)  
 
@@ -196,23 +196,13 @@ The response is an object containing only those keys that geosupport returned wi
   'LIST OF GEOGRAPHIC IDENTIFIERS:': '104             124113610011001026R  BROADWAY                                                                        70              84114410011001026L  CEDAR STREET                                                                    15              25127100011001026L  NASSAU STREET                                                                    2              16128870011001026L  PINE STREET                                                                                       101109011001026RN EQUITABLE BUILDING' }
 ```
 
-## Running in Docker
-
-This repo includes a `Dockerfile` which creates a ready-to-use linux environment, including the latest version of geosupport, and the required geosupport environment variables.
-
-### To build the docker image
-
-Build the image, giving it the tag `node_geosupport`.  This may take a while, as it needs to download a ~190MB zip file.
-
-`docker build -t "node_geosupport" .`
-
-The geosupport files will be located in `/geosupport` on the container's filesystem.
-
 ### To run the example in a docker container
+
+You can run this example on a Mac using Docker.  [node-geosupport-docker](https://github.com/chriswhong/node-geosupport-docker) contains an image for a node environment that has the necessary geosupport files installed and environment variables set.  It is published on dockerhub as `chriswhong/geosupport`.
 
 Navigate to this repo's directory in your local filesystem, then use this `docker run` command to launch the container's bash terminal with this repo's code mounted as a volume.
 
-`docker run -it -v $PWD:/node-geosupport -w /node-geosupport node_geosupport /bin/bash`
+`docker run -it -v $PWD:/node-geosupport -w /node-geosupport chriswhong/geosupport /bin/bash`
 
 *Be sure to `npm install` from the container's terminal, not from your local machine.  This is because `node-ffi`, the package that acts as a bridge between node.js and the linux .so, installs itself differently in each environment.*
 
@@ -220,7 +210,7 @@ You should be able to see geosupport in action by running `node example/example.
 
 Use `ctrl-c` to exit the container.
 
-## Things to build once this is a real package
+## Things to build once this is more mature
 
 - An express.js web api would be useful.
 - A bulk geocoder that takes a CSV and spits out another CSV with new columns from the geosupport results
