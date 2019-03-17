@@ -1,5 +1,4 @@
 const parseCSV = require('./parse-CSV');
-// const parseWorkArea = require('./parse-workarea');
 
 const flag = (trueValue, falseValue) => (d) => {
   if ((typeof d) === 'boolean') {
@@ -15,7 +14,7 @@ const listOfWorkareas = (layouts, length) => (d) => {
   const workAreas = d.match(new RegExp(`.{${length}}`, 'g'))
     .filter(workArea => workArea.trim().length > 0);
 
-  return workAreas.map(workArea => parseWorkArea({}, layouts, workArea));
+  return workAreas.map(workArea => parseWorkArea(layouts, workArea));
 };
 
 const lgiLayouts = parseCSV('work_area_layouts/output/LGI.csv');
@@ -68,15 +67,18 @@ const parseField = (layouts, name, wa) => {
   return (typeof returnValue) === 'string' ? returnValue.trim() : returnValue;
 };
 
-const parseWorkArea = (output, layouts, wa) => {
+// converts a work area string into an object using index definitions in layout
+// sets keys on object
+const parseWorkArea = (layouts, workArea) => {
+  const output = {};
+
   layouts.forEach((layout) => {
-    const value = parseField(layouts, layout.name, wa);
+    const value = parseField(layouts, layout.name, workArea);
     if (value.length > 0) output[layout.name] = value;
   });
 
   return output;
 };
-
 
 module.exports = {
   parseWorkArea,

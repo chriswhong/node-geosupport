@@ -4,9 +4,7 @@ const { parseWorkArea } = require('./utils/parse-workarea');
 const workArea1Layouts = parseCSV('work_area_layouts/output/WA1.csv');
 
 const parseOutput = (flags, wa1, wa2, functionCode) => {
-  let output = {};
-
-  output = parseWorkArea(output, workArea1Layouts, wa1);
+  let output = parseWorkArea(workArea1Layouts, wa1);
 
   if (wa2.length > 0) {
     let outputLayoutFilename = '';
@@ -26,7 +24,7 @@ const parseOutput = (flags, wa1, wa2, functionCode) => {
 
     const outputLayouts = parseCSV(`work_area_layouts/output/${outputLayoutFilename}.csv`);
 
-    output = parseWorkArea(output, outputLayouts, wa2);
+    output = { ...output, ...parseWorkArea(outputLayouts, wa2) };
   }
 
   return output;
