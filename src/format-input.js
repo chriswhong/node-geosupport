@@ -1,5 +1,5 @@
 const parseCSV = require('./utils/parse-CSV');
-const parseField = require('./utils/parse-field');
+const { parseField } = require('./utils/parse-workarea');
 
 const workArea1Layouts = parseCSV('work_area_layouts/input/WA1.csv');
 
@@ -46,13 +46,14 @@ const getMode = (flags) => {
   return 'regular';
 };
 
-const getFlags = (wa1, layouts) => {
+const getFlags = (wa1) => {
+
   const flags = {
-    function: parseField(layouts, 'Geosupport Function Code', wa1).trim(),
-    mode_switch: parseField(layouts, 'Mode Switch', wa1) === 'X',
-    long_work_area_2: parseField(layouts, 'Long Work Area 2 Flag', wa1) === 'L',
-    tpad: parseField(layouts, 'TPAD Switch', wa1) === 'Y',
-    auxseg: parseField(layouts, 'Auxiliary Segment Switch', wa1) === 'Y',
+    function: parseField(workArea1Layouts, 'Geosupport Function Code', wa1).trim(),
+    mode_switch: parseField(workArea1Layouts, 'Mode Switch', wa1) === 'X',
+    long_work_area_2: parseField(workArea1Layouts, 'Long Work Area 2 Flag', wa1) === 'L',
+    tpad: parseField(workArea1Layouts, 'TPAD Switch', wa1) === 'Y',
+    auxseg: parseField(workArea1Layouts, 'Auxiliary Segment Switch', wa1) === 'Y',
   };
 
   flags.mode = getMode(flags);
@@ -62,7 +63,7 @@ const getFlags = (wa1, layouts) => {
 
 const formatInput = (params) => {
   const wa1 = createWa1(params);
-  const flags = getFlags(wa1, workArea1Layouts);
+  const flags = getFlags(wa1);
   const wa2 = createWa2(flags);
 
   return { flags, wa1, wa2 };
