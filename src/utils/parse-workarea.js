@@ -14,7 +14,7 @@ const listOfWorkareas = (layouts, length) => (d) => {
   const workAreas = d.match(new RegExp(`.{${length}}`, 'g'))
     .filter(workArea => workArea.trim().length > 0);
 
-  return workAreas.map(workArea => parseWorkArea(layouts, workArea));
+  return workAreas.map(workArea => parseWorkArea(layouts, workArea)); // eslint-disable-line
 };
 
 const lgiLayouts = parseCSV('work_area_layouts/output/LGI.csv');
@@ -23,10 +23,12 @@ const binsLayouts = parseCSV('work_area_layouts/output/BINs.csv');
 const binsTpadLayouts = parseCSV('work_area_layouts/output/BINs-tpad.csv');
 const intersectionLayouts = parseCSV('work_area_layouts/output/INTERSECTION.csv');
 
+// TODO handle this formatter used by function 2W
+const listOfNodes = v => v;
 
 const formatters = {
   function: v => v, // not sure why we need to format the function code
-  CT: value => value.replace(/\s/g, '0'), // replace census tract spaces with zeros
+  borough: v => v, // same, figure out why this is used
 
   // flags
   auxseg: flag('Y', 'N'),
@@ -43,6 +45,9 @@ const formatters = {
   BINs: listOfWorkareas(binsLayouts, 7),
   'BINs-tpad': listOfWorkareas(binsTpadLayouts, 8),
   intersections: listOfWorkareas(intersectionLayouts, 55),
+  node_list: listOfNodes,
+
+  CT: value => value.replace(/\s/g, '0'), // replace census tract spaces with zeros
 };
 
 const listOfItems = (value, length) => value

@@ -3,6 +3,7 @@ const { parseField } = require('./utils/parse-workarea');
 
 const workArea1Layouts = parseCSV('work_area_layouts/input/WA1.csv');
 
+// build work area 1 from the parameters being passed in
 const createWa1 = (params) => {
   params['Work Area Format Indicator'] = 'C';
 
@@ -17,6 +18,7 @@ const createWa1 = (params) => {
   return buffer.toString();
 };
 
+// build work area 2 based on the flags defined in the creation of work area 1
 const createWa2 = (flags) => {
   const functions = parseCSV('function_info.csv');
 
@@ -47,7 +49,6 @@ const getMode = (flags) => {
 };
 
 const getFlags = (wa1) => {
-
   const flags = {
     function: parseField(workArea1Layouts, 'Geosupport Function Code', wa1).trim(),
     mode_switch: parseField(workArea1Layouts, 'Mode Switch', wa1) === 'X',

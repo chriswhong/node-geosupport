@@ -1,23 +1,23 @@
 const geosupport = require('../index.js');
-
-geosupport['1']({
-  'Borough Code-1': '1',
-  'House Number - Display Format': '120',
-  'Street Name-1': 'BROADWAY',
-})
-  .then((response) => {
-    console.log(response);
-  });
-
-geosupport['1B']({
-  'House Number - Display Format': '120',
-  'Street Name-1': 'BROADWAY',
-  'ZIP Code Input': '10271',
-  'Borough Code-1': '1',
-})
-  .then((response) => {
-    console.log(response);
-  });
+//
+// geosupport['1']({
+//   'Borough Code-1': '1',
+//   'House Number - Display Format': '120',
+//   'Street Name-1': 'BROADWAY',
+// })
+//   .then((response) => {
+//     console.log(response);
+//   });
+//
+// geosupport['1B']({
+//   'House Number - Display Format': '120',
+//   'Street Name-1': 'BROADWAY',
+//   'ZIP Code Input': '10271',
+//   'Borough Code-1': '1',
+// })
+//   .then((response) => {
+//     console.log(response);
+//   });
 //
 // geosupport['1E']({
 //   'House Number - Display Format': '120',
@@ -57,16 +57,16 @@ geosupport['1B']({
 //     console.log(response);
 //   });
 //
-// geosupport['2W']({
-//   'Borough Code-1': '1',
-//   'Street Name-1': '42 Street',
-//   'Borough Code-2': '1',
-//   'Street Name-2': '7 Avenue',
-// })
-//   .then((response) => {
-//     console.log(response);
-//   });
-//
+geosupport['2W']({
+  'Borough Code-1': '1',
+  'Street Name-1': '42 Street',
+  'Borough Code-2': '1',
+  'Street Name-2': '7 Avenue',
+})
+  .then((response) => {
+    console.log(response);
+  });
+
 // geosupport['3']({
 //   'Borough Code-1': '1',
 //   'Street Name-1': 'Madison Ave',
@@ -115,14 +115,14 @@ geosupport['1B']({
 //   .then((response) => {
 //     console.log(response);
 //   });
-
-geosupport.BF({
-  'Borough Code-1': '1',
-  'Street Name-1': 'BRO',
-})
-  .then((response) => {
-    console.log(response);
-  });
+//
+// geosupport.BF({
+//   'Borough Code-1': '1',
+//   'Street Name-1': 'BRO',
+// })
+//   .then((response) => {
+//     console.log(response);
+//   });
 //
 // geosupport.BL({
 //   'BOROUGH BLOCK LOT (BBL)': '1000477501',
