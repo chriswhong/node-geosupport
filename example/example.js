@@ -9,15 +9,15 @@ const geosupport = require('../index.js');
 //     console.log(response);
 //   });
 //
-// geosupport['1B']({
-//   'House Number - Display Format': '120',
-//   'Street Name-1': 'BROADWAY',
-//   'ZIP Code Input': '10271',
-//   'Borough Code-1': '1',
-// })
-//   .then((response) => {
-//     console.log(response);
-//   });
+geosupport['1B']({
+  'House Number - Display Format': '120',
+  street: 'BROADWAY',
+  'ZIP Code Input': '10271',
+  'Borough Code-1': '1',
+})
+  .then((response) => {
+    console.log(response);
+  });
 //
 // geosupport['1E']({
 //   'House Number - Display Format': '120',
@@ -57,15 +57,15 @@ const geosupport = require('../index.js');
 //     console.log(response);
 //   });
 //
-geosupport['2W']({
-  'Borough Code-1': '1',
-  'Street Name-1': '42 Street',
-  'Borough Code-2': '1',
-  'Street Name-2': '7 Avenue',
-})
-  .then((response) => {
-    console.log(response);
-  });
+// geosupport['2W']({
+//   'Borough Code-1': '1',
+//   'Street Name-1': '42 Street',
+//   'Borough Code-2': '1',
+//   'Street Name-2': '7 Avenue',
+// })
+//   .then((response) => {
+//     console.log(response);
+//   });
 
 // geosupport['3']({
 //   'Borough Code-1': '1',
