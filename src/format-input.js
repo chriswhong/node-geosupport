@@ -11,7 +11,8 @@ const createWa1 = (params) => {
 
   Object.keys(params).forEach((key) => {
     // TODO normalize and validate inputs
-    const layout = workArea1Layouts.find(d => d.name === key);
+    const layout = workArea1Layouts.find(d => (d.name === key) || d.alt_names.includes(key));
+
     buffer.write(params[key], parseInt(layout.from, 10) - 1, parseInt(layout.size, 10));
   });
 
