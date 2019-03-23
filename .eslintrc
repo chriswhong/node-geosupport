@@ -1,4 +1,8 @@
 {
-  "extends": "airbnb/base",
-  "rules": {}
+  "extends": "airbnb-base",
+  "rules": {},
+  "globals": {
+    "describe": true,
+    "it": true,
+  }
 }
